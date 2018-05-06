@@ -26,7 +26,7 @@ def mode(values):
     >>> mode([1, 2, 3, 2])
     set([2])
 
-    >>> mode([1, "mother", "mother", 3, 3])
+    >>> mode([(4, 4, 4), "mother", "mother", 3, 3])
     set(['mother', 3])
 
     Args:
@@ -34,19 +34,50 @@ def mode(values):
     Returns:
         a set with the values that appears the most
     """
-    mapa = {}
+    freq = abs_frequence(values)
     maior = 0
     for v in values:
-        if v in mapa:
-            mapa[v] += 1
-        else:
-            mapa[v] = 0
-
-        maior = max(maior, mapa[v])
+        maior = max(maior, freq[v])
 
     res = set()
-    for v in mapa:
-        if mapa[v] == maior:
+    for v in freq:
+        if freq[v] == maior:
             res.add(v)
 
     return res
+
+def abs_frequence(values):
+    freq = {}
+    for v in values:
+        if v in freq:
+            freq[v] += 1
+        else:
+            freq[v] = 1
+    return freq
+
+def rel_frequence(values):
+    total = len(values)
+    freq = {}
+    for v in values:
+        if v in freq:
+            freq[v] += 1.0/total
+        else:
+            freq[v] = 1.0/total
+    return freq
+
+def percentage(values):
+    total = len(values)
+    freq = {}
+    for v in values:
+        if v in freq:
+            freq[v] += 100.0/total
+        else:
+            freq[v] = 100.0/total
+    return freq
+
+'''
+data = [12, 15, 18, 15, 12, 18, 18, 15, 18, 17, 19, 20]
+print abs_frequence(data)
+print rel_frequence(data)
+print percentage(data)
+'''

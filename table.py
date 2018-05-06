@@ -39,6 +39,13 @@ class table:
         for line in range(len(self.data)):
             self._show(line)
 
+    @staticmethod
+    def show_from_data(data):
+        temp = table(data)
+        temp.show()
+
+
+
 '''
 ### Example of usage of table
 info = [
@@ -47,6 +54,5 @@ info = [
         ["Cicrano", 31, "Letras"],
         ["Genoveva Antao Bezerra", float('inf'), "Biologia"]
        ]
-a = table(info)
-a.show()
+table.show_from_data(info)
 '''
