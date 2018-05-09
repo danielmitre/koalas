@@ -75,9 +75,29 @@ def percentage(values):
             freq[v] = 100.0/total
     return freq
 
-'''
-data = [12, 15, 18, 15, 12, 18, 18, 15, 18, 17, 19, 20]
-print abs_frequence(data)
-print rel_frequence(data)
-print percentage(data)
-'''
+
+def median(values):
+    """Calculate a value that puts half of values at its left
+
+    >>> median([1, 2, 3, 4])
+    2.5
+
+    >>> median([1, 2, 3])
+    2
+
+    >>> median([4, 1, 5, 2])
+    3.0
+
+    Args:
+        Values (iterable of numbers): the values that you want the median
+    Returns:
+        A real number that represents the median of values.
+    Raises:
+        IndexError: if values is passed as a empty iterator
+    """
+    values = sorted(values)
+    tam = len(values)
+    if tam%2 == 1:
+        return values[(tam-1)/2]
+    half = tam/2
+    return (values[half] + values[half-1]) / 2.0
