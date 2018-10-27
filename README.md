@@ -1,31 +1,18 @@
 # koalas
 For now, is just a small matematical and statistical Python module
 
-
-## table
-Creates/display a table from given informations
-
-### Example
-```python
->>> from koalas import *
->>> info = [
-...         ["Nome", "Idade", "Curso"],
-...         ["Fulano", 20, "Engenharia"],
-...         ["Cicrano", 31, "Letras"],
-...         ["Genoveva Antao Bezerra", 15, "Biologia"]
-...        ]
->>> table.show_from_data(info)
-          Nome          | Idade |   Curso    |
-==============================================
-         Fulano         |  20   | Engenharia |
-        Cicrano         |  31   |   Letras   |
- Genoveva Antao Bezerra |  15   |  Biologia  |
-
->>> tabela = table(info)
->>> tabela.show()
-          Nome          | Idade |   Curso    |
-==============================================
-         Fulano         |  20   | Engenharia |
-        Cicrano         |  31   |   Letras   |
- Genoveva Antao Bezerra |  15   |  Biologia  |
-```
+## stat
++ mean :heavy_check_mark:
++ mode :heavy_check_mark:
++ median :heavy_check_mark:
++ variance :x:
++ standard deviation :x:
++ absolute frequence :heavy_check_mark:
++ relative frequence :heavy_check_mark:
++ percentage :heavy_check_mark:
++ sample size calculation :x:
++ estimators :x:
++ error :x:
++ confidence interval :x:
++ significance :x:
++ hypothesis :x:
