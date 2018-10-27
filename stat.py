@@ -47,6 +47,19 @@ def mode(values):
     return res
 
 def abs_frequence(values):
+    """Calculate absolute frequence of elements
+
+    >>> abs_frequence([1, 2, 3, 2])
+    {1: 1, 2: 2, 3: 1}
+
+    >>> abs_frequence([(4, 4, 4), "mother", "mother", 3, 3])
+    {3: 2, 'mother': 2, (4, 4, 4): 1}
+
+    Args:
+        values (iterable): the values that you want the frequence
+    Returns:
+        a dict with the values and their frequence
+    """
     freq = {}
     for v in values:
         if v in freq:
@@ -55,25 +68,45 @@ def abs_frequence(values):
             freq[v] = 1
     return freq
 
-def rel_frequence(values):
+def rel_frequence(values, multiplier=1.0):
+    """Calculate relative frequence of elements
+
+    >>> rel_frequence([1, 2, 3, 2])
+    {1: 0.25, 2: 0.5, 3: 0.25}
+
+    >>> rel_frequence([(4, 4, 4), "mother", "mother", 3, 3])
+    {3: 0.4, 'mother': 0.4, (4, 4, 4): 0.2}
+
+    Args:
+        values (iterable): the values that you want the frequence
+        [optional] multiplier (float): a value that shold multiply every frequence at the end
+    Returns:
+        a dict with the values and their frequence
+    """
     total = len(values)
     freq = {}
     for v in values:
         if v in freq:
-            freq[v] += 1.0/total
+            freq[v] += multiplier/total
         else:
-            freq[v] = 1.0/total
+            freq[v] = multiplier/total
     return freq
 
 def percentage(values):
-    total = len(values)
-    freq = {}
-    for v in values:
-        if v in freq:
-            freq[v] += 100.0/total
-        else:
-            freq[v] = 100.0/total
-    return freq
+    """Equivalent to rel_frequence(values, 100.0)
+
+    >>> percentage([1, 2, 3, 2])
+    {1: 25.0, 2: 50.0, 3: 25.0}
+
+    >>> percentage([(4, 4, 4), "mother", "mother", 3, 3])
+    {3: 40.0, 'mother': 40.0, (4, 4, 4): 20.0}
+
+    Args:
+        values (iterable): the values that you want the percentage of their frequence
+    Returns:
+        a dict with the values and their frequence (x100)
+    """
+    return rel_frequence(values, multiplier=100.0)
 
 
 def median(values):
@@ -93,8 +126,9 @@ def median(values):
     Returns:
         A real number that represents the median of values.
     Raises:
-        IndexError: if values is passed as a empty iterator
+        IndexError: if values is passed as a empty iterable
     """
+
     values = sorted(values)
     tam = len(values)
     if tam%2 == 1:
